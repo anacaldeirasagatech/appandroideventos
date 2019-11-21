@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Toast.makeText(MainActivity.this, "Fab Clicked", Toast.LENGTH_LONG).show();
-
             }
         });
     }
