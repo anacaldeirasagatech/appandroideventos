@@ -73,7 +73,9 @@
             android:id="@+id/cadastroUsuarioSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:lines="0" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

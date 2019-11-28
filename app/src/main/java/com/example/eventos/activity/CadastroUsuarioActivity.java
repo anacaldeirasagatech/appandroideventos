@@ -39,6 +39,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Usuario usuario = new Usuario();
+                usuario.setNomeUser(nome.getText().toString());
+                usuario.setEmail(email.getText().toString());
+                usuario.setSenha(senha.getText().toString());
                 final FirebaseAuth auth = ManagerFirebase.getFirebaseAuth();
                 auth.createUserWithEmailAndPassword(
                         usuario.getEmail(), usuario.getSenha()
@@ -54,14 +57,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                             usuario.updateNameUserAuthFirebase(usuario.getNomeUser());
 
                             //finish();
-                            Intent intent = new Intent(getApplicationContext(), CadastroUsuarioActivity.class);
-                            startActivity(intent);
+
 
                             try {
                                 String uuid = auth.getUid();
                                 usuario.setUserId(uuid);
                                 usuario.salvar();
-
+                                Intent intent = new Intent(getApplicationContext(), CadastroUsuarioActivity.class);
+                                startActivity(intent);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
