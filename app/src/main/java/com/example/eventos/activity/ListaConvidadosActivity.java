@@ -1,17 +1,17 @@
-package com.example.eventos;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.eventos.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.eventos.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+public class ListaConvidadosActivity extends AppCompatActivity {
     ListView listItemView;
     FloatingActionButton fab;
 
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_convidados);
+        setTitle("Lista de Convidados");
 
         listItemView = (ListView)findViewById(R.id.listView);
         fab = (FloatingActionButton)findViewById(R.id.fab);
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MainActivity.this, "Fab Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(ListaConvidadosActivity.this, "Fab Clicked", Toast.LENGTH_LONG).show();
             }
         });
     }
