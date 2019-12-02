@@ -6,5 +6,5 @@
     android:layout_height="match_parent"
     tools:context=".activity.ListaConvidadosActivity">
 
-    <include layout="@layout/list_convidados"/>
+    <include layout="@layout/activity_lista_convidados"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

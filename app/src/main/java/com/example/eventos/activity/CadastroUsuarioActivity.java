@@ -58,7 +58,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
                             //finish();
 
-
                             try {
                                 String uuid = auth.getUid();
                                 usuario.setUserId(uuid);
@@ -69,7 +68,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                        } else {
+                        }
+                        else {
 
                             String exception;
                             try {

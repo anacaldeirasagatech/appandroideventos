@@ -30,7 +30,7 @@ public class ListaConvidadosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_convidados);
+        setContentView(R.layout.activity_lista_convidados);
         setTitle("Lista de Convidados");
 
         listItemView = (ListView)findViewById(R.id.listView);
