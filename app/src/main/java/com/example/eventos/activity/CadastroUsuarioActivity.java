@@ -99,7 +99,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_cadastro_evento);
+            setContentView(R.layout.activity_evento_cadastro);
         }
     }
 }

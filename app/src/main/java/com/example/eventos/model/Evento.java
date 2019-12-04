@@ -1,6 +1,13 @@
 package com.example.eventos.model;
 
 
+import android.util.Log;
+
+import com.example.eventos.utils.ManagerFirebase;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.Serializable;
 
 public class Evento implements Serializable {
