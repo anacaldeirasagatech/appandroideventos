@@ -18,13 +18,13 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/inputLayoutCadastroNome"
+        app:layout_constraintBottom_toTopOf="@+id/txtInputConvidadoNome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputLayoutCadastroNome"
+        android:id="@+id/txtInputConvidadoNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -44,9 +44,10 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutCadastroNome">
+        app:layout_constraintTop_toBottomOf="@+id/txtInputConvidadoNome">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInputConvidadoTelefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telefone" />
@@ -63,15 +64,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInputConvidadoEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="76dp"
-        android:layout_height="70dp"
+        android:id="@+id/btnSalvarConvidado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"

@@ -1,14 +1,21 @@
 package com.example.eventos.model;
 
 
-import android.util.Log;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.example.eventos.activity.CadastroEventoActivity;
 import com.example.eventos.utils.ManagerFirebase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Evento implements Serializable {
     private String idEvento;
@@ -67,5 +74,13 @@ public class Evento implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public void deletar() {
+        FirebaseFirestore firestore = ManagerFirebase.getFireStore();
+        firestore
+                .collection("evento")
+                .document()
+                .delete();
     }
 }
