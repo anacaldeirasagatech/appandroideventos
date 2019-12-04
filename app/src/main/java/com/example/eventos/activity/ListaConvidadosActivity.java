@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eventos.R;
 import com.example.eventos.adapter.AdapterListConvidados;
-import com.example.eventos.adapter.AdapterListEventos;
 import com.example.eventos.model.Convidado;
 import com.example.eventos.model.Convite;
 import com.example.eventos.model.Evento;
@@ -34,7 +33,7 @@ import java.util.List;
 public class ListaConvidadosActivity extends AppCompatActivity {
     private Evento evento;
     ListView listItemView;
-    FloatingActionButton fab;
+    FloatingActionButton btnaddConvidado;
     private List<Convite> convites;
     private List<Convidado> convidados;
     private List<String> convidadoLista;
@@ -65,13 +64,14 @@ public class ListaConvidadosActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        fab = (FloatingActionButton)findViewById(R.id.btnAddEvento);
+        btnaddConvidado = (FloatingActionButton)findViewById(R.id.btnAddConvidado);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        btnaddConvidado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(ListaConvidadosActivity.this, "Fab Clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), CadastroConvidadoActivity.class);
+                intent.putExtra("evento", evento);
+                startActivity(intent);
             }
         });
     }

@@ -44,6 +44,11 @@ public class CadastroConvidadoActivity extends AppCompatActivity {
 
         if (bundle != null) {
             evento = (Evento) bundle.getSerializable("evento");
+            if(evento == null)
+            {
+                toastAlerta("Você precisa ter um evento criado para conseguir adicionar convidados!");
+                finish();
+            }
             convidado = (Convidado) bundle.getSerializable("convidado");
             if (convidado != null) {
                 nome.setText(convidado.getNome());
