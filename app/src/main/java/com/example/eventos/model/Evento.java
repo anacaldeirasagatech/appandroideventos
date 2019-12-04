@@ -80,7 +80,7 @@ public class Evento implements Serializable {
         FirebaseFirestore firestore = ManagerFirebase.getFireStore();
         firestore
                 .collection("evento")
-                .document()
+                .document(getIdEvento())
                 .delete();
     }
 }

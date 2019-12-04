@@ -41,26 +41,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_evento_cadastro);
         evento = null;
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            evento = (Evento) bundle.getSerializable("evento");
-        }
         txtNome = findViewById(R.id.txtNome);
         txtLocal = findViewById(R.id.txtLocal);
         txtDescricao = findViewById(R.id.txtDescricao);
         txtData = findViewById(R.id.txtData);
         btn = findViewById(R.id.btnEventoSalvar);
         btCalendario = findViewById(R.id.btnCalendarioEvento);
-
-        auth.signInWithEmailAndPassword("joao@hotmail.com", "123456789").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Não foi possível efetuar o login. Tente novamente conferindo todos os dados!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +75,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
     public void salvar() {
         try {
             if (evento == null) {
+                evento = new Evento();
                 evento.setIdEvento(UUID.randomUUID().toString());
             }
             evento.setNomeEvento(txtNome.getText().toString());
@@ -101,21 +88,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void salvar(Evento evento) {
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        DocumentReference ref = firestore.collection("evento").document();
-        ref.set(evento).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CadastroEventoActivity.this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(CadastroEventoActivity.this, "Não foi possível efetuar o cadastro. Tente novamente conferindo todos os dados!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     @Override
@@ -146,4 +118,25 @@ public class CadastroEventoActivity extends AppCompatActivity {
             txtData.setText(sdf.format(myCalendar.getTime()));
         }
     };
+
+    private void salvar(Evento evento) {
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        DocumentReference ref = firestore.collection("evento").document(evento.getIdEvento());
+        ref.set(evento).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CadastroEventoActivity.this, "Cadastro efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CadastroEventoActivity.this, "Não foi possível efetuar o cadastro. Tente novamente conferindo todos os dados!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
+    }
 }

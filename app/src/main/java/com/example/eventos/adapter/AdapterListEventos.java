@@ -21,6 +21,7 @@ import com.example.eventos.R;
 import com.example.eventos.activity.CadastroConvidadoActivity;
 import com.example.eventos.activity.CadastroEventoActivity;
 import com.example.eventos.activity.CadastroUsuarioActivity;
+import com.example.eventos.activity.ListaConvidadosActivity;
 import com.example.eventos.model.Evento;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class AdapterListEventos extends ArrayAdapter<Evento> implements ListAdap
     }
 
     public class ViewHolder {
-        TextView nome, data;
+        TextView nome, data, btnCarregarConvidadosEvento;
         ImageView btnMenuEvento;
     }
 
@@ -75,21 +76,28 @@ public class AdapterListEventos extends ArrayAdapter<Evento> implements ListAdap
             viewHolder.nome = convertView.findViewById(R.id.txtEventoNome);
             viewHolder.data = convertView.findViewById(R.id.txtEventoData);
             viewHolder.btnMenuEvento = convertView.findViewById(R.id.btnMenuEvento);
+            viewHolder.btnCarregarConvidadosEvento = convertView.findViewById(R.id.btnCarregarConvidadosEvento);
             convertView.setTag(viewHolder);
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        try {
-
-        viewHolder.btnMenuEvento.setOnClickListener(new View.OnClickListener() {
+        viewHolder.nome.setText(evento.getNomeEvento());
+        viewHolder.data.setText(evento.getData());
+        viewHolder.btnCarregarConvidadosEvento.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), CadastroConvidadoActivity.class);
-                i.putExtra("evento", evento);
-                context.startActivity(i);
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ListaConvidadosActivity.class);
+                intent.putExtra("evento", evento);
+                getContext().startActivity(intent);
                 notifyDataSetChanged();
+            }
+        });
+        try {
+            viewHolder.btnMenuEvento.setImageResource(R.drawable.ic_more_vert_black_24dp);
+            viewHolder.btnMenuEvento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     switch (view.getId()) {
                         case R.id.btnMenuEvento:
 
@@ -113,7 +121,6 @@ public class AdapterListEventos extends ArrayAdapter<Evento> implements ListAdap
                                             evento.deletar();
                                             notifyDataSetChanged();
                                             break;
-
                                         default:
                                             break;
                                     }
@@ -126,8 +133,8 @@ public class AdapterListEventos extends ArrayAdapter<Evento> implements ListAdap
                         default:
                             break;
                     }
-            }
-        });
+                }
+            });
 
         } catch (Exception e) {
 

@@ -8,5 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Nome Convidado" />
+        android:text="Nome Convidado"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressConvidado"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

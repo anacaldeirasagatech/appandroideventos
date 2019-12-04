@@ -72,12 +72,19 @@ public class CadastroConvidadoActivity extends AppCompatActivity {
 
     private void salvar() {
 
-        if (convidado == null)
+        if (convidado == null) {
+            convidado = new Convidado();
             convidado.setIdConvidado(UUID.randomUUID().toString());
-
+        }
         convidado.setNome(nome.getText().toString());
         convidado.setEmail(email.getText().toString());
         convidado.setTelefone(telefone.getText().toString());
         convidado.salvar(evento.getIdEvento());
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 }

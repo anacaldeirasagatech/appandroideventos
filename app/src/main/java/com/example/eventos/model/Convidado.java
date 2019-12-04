@@ -54,16 +54,18 @@ public class Convidado implements Serializable {
     public void salvar(final String idEvento) {
         FirebaseFirestore firestore = ManagerFirebase.getFireStore();
         firestore
-                .collection("animal")
+                .collection("convidado")
                 .document(getIdConvidado())
                 .set(this)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Convite convite = new Convite();
+                        String idConvidado = getIdConvidado();
                         convite.setIdEvento(idEvento);
-                        convite.setIdConvidado(getIdConvidado());
-                        convite.setIdConvite(UUID.randomUUID().toString());
+                        convite.setIdConvidado(idConvidado);
+                        convite.setIdConvite(idEvento+idConvidado);
+                        convite.salvar();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

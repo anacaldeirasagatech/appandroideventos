@@ -40,33 +40,14 @@ public class DashBoardActivity extends AppCompatActivity {
     private CollectionReference eventosRef;
     private AdapterListEventos adapterListEventos;
     private FloatingActionButton btnNovoEvento;
-    private FirebaseAuth auth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
-
-        auth.signInWithEmailAndPassword("joao@hotmail.com", "123456789").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Não foi possível efetuar o login. Tente novamente conferindo todos os dados!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
         database = ManagerFirebase.getFireStore();
         listViewEventos = (ListView) findViewById(R.id.lista_eventos_usuario);
-        listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(getApplicationContext(), ListaConvidadosActivity.class);
-                Evento evento = eventos.get(position);
-                intent.putExtra("evento", evento);
-                startActivity(intent);
-            }
-        });
+
         btnNovoEvento = findViewById(R.id.btnAddEvento);
         btnNovoEvento.setOnClickListener(new View.OnClickListener() {
             @Override

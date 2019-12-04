@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,7 @@ public class AdapterListConvidados extends ArrayAdapter<Convidado> implements Li
 
     public class ViewHolder {
         TextView nome;
+        ProgressBar loading;
     }
 
     @Override
@@ -73,6 +75,7 @@ public class AdapterListConvidados extends ArrayAdapter<Convidado> implements Li
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(layoutResource, parent, false);
             viewHolder.nome = convertView.findViewById(R.id.txtNomeConvidado);
+            viewHolder.loading = convertView.findViewById(R.id.progressConvidado);
             convertView.setTag(viewHolder);
 
         } else {
@@ -91,26 +94,12 @@ public class AdapterListConvidados extends ArrayAdapter<Convidado> implements Li
                             convidados.get(position).setEmail(convidado.getEmail());
                             convidados.get(position).setTelefone(convidado.getTelefone());
                             viewHolder.nome.setText(convidado.getNome());
+                            viewHolder.loading.setVisibility(View.GONE);
+                            viewHolder.nome.setVisibility(View.VISIBLE);
                             notifyDataSetChanged();
                         }
                     }
                 });
-        convitesRef
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
-                        if (e != null) {
-                            return;
-                        }
-                        Convidado convidado = documentSnapshot.toObject(Convidado.class);
-                        convidados.get(position).setNome(convidado.getNome());
-                        convidados.get(position).setEmail(convidado.getEmail());
-                        convidados.get(position).setTelefone(convidado.getTelefone());
-                        viewHolder.nome.setText(convidado.getNome());
-                        notifyDataSetChanged();
-                    }
-                });
-
         return convertView;
     }
 
